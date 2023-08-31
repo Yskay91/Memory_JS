@@ -3,32 +3,49 @@
 */
 
 let tableauJeu;
-
 let allCards = document.querySelectorAll(".card");
+let cptClickCurrent = 0;
+let dataImageShowed;
 
 allCards.forEach(card => {
-    card.addEventListener("click", function(){
-        if(card.classList.contains("hidden")){
-            card.classList.remove("hidden")
-        } else{
-            card.classList.add("hidden");
-        }
+    card.addEventListener("click", function () {
+        playGame(card)
     });
 })
 
-//Génére un nombre aléatoire
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
+function playGame(card) {
+    cptClickCurrent++;
 
-//Génére un tableau
-function generateTableGame(x, y) {
-    let tableau = new Array(x);
+    if (cptClickCurrent == 1) {
+        //premier click,  je cache les images trouvées avant
+        allCards.forEach(card => {
+            if (card.classList.contains("finded")) {
+                //carte cachée
+            } else {
+                //pas trouvée il faut qu'elles soient masquées
+                card.classList.add("hidden");
+            }
+        });
+        //J'affiche la carte que je viens de cliquer
+        card.classList.remove("hidden");
+        //je stocke la réponse derrière la carte
+        dataImageShowed = card.dataset.image;
 
-    for (var i = 0; i < tableau.lenght; i++) {
-        tableau[i] = new Array(y);
+    } else if (cptClickCurrent == 2) {
+        //deuxième click, je vérifie si l'image a été trouvée
+        card.classList.remove("hidden");
+        if (dataImageShowed == card.dataset.image) {
+            allCards.forEach(card => {
+                if (card.classList.contains("hidden")) {
+                    //carte cachée
+                } else {
+                    card.classList.add("finded");
+                }
+            });
+        }
+
+        cptClickCurrent = 0;
+        //On enlève les cartes sauvegardées
+        dataImageShowed = "";
     }
-
-    tableauJeu = tableau;
 }
-
