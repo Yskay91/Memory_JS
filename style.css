@@ -1,0 +1,20 @@
+#gameBoard{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr)
+}
+
+.card{
+    margin: 10px;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.card.hidden p{
+    visibility: hidden;
+}
+
+.card.hidden{
+    background-color: #7c73e6;
+}
