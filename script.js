@@ -1,19 +1,14 @@
 let tableauJeu;
-let allCards = document.querySelectorAll(".card");
 let cptClickCurrent = 0;
 let cardClickedId;
-
-/* Ajoute l''événement de clique sur toutes les cartes */
-allCards.forEach((card) => {
-    card.addEventListener("click", function () {
-        clickOnCardEvent(card);
-    });
-});
+const cards = ["Evoli", "Sablaireau", "Salameche", "Pokeball"];
+const gameBoard = document.getElementById("gameBoard");
 
 /* Cette fonction gère ce qui se passe 
 quand on clique sur une carte 
 */
 function clickOnCardEvent(card) {
+    let allCards = document.querySelectorAll(".card");
     if (card.classList.contains("finded")) {
         alert("Vous avez déjà appuyé sur cette carte, choisissez-en une autre");
         return;
@@ -58,4 +53,46 @@ function clickOnCardEvent(card) {
             cardClickedId = "";
         }
     }
+}
+
+/* Initialise le tableau */
+function initGame(nbPaires) {
+    gameBoard.innerHTML = "";
+    let gameCard = [];
+    for (let i = 0; i < nbPaires; i++) {
+        gameCard.push([cards[i], false]);
+        gameCard.push([cards[i], false]);
+    }
+    console.log(gameCard);
+
+    for (let i = 0; i < gameCard.length; i++) {
+        let cardIsPositionned = false;
+        while (!cardIsPositionned) {
+            let randomNumber = getRandomNumber(0, gameCard.length);
+            if (gameCard[randomNumber][1] == false) {
+                cardIsPositionned = true;
+                gameCard[randomNumber][1] = true;
+
+                //Je peux positioner la carte dans le html
+                let cardHtml = getHtmlCodeCard(gameCard[randomNumber][0], i);
+                gameBoard.innerHTML += cardHtml;
+            }
+        }
+    }
+
+    /* Ajoute l'événement de click */
+    let allCards = document.querySelectorAll(".card");
+    allCards.forEach((card) => {
+        card.addEventListener("click", function () {
+            clickOnCardEvent(card);
+        });
+    });
+}
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (min, max) + min);
+}
+
+function getHtmlCodeCard(nomCard, id) {
+    return `<div class="card hidden" id="${id}" data-image="${nomCard}"><img src="img/${nomCard}.png" /></div>`;
 }
