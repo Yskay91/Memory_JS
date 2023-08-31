@@ -3,9 +3,11 @@ let cptClickCurrent = 0;
 let cardClickedId;
 const cards = ["Evoli", "Pikachu", "Psykokwak", "Sablaireau", "Salameche", "Pokeball"];
 const gameBoard = document.getElementById("gameBoard");
+let nbPairesOnGame;
+let cptCartesTrouvees = 0;
 
 
-document.getElementById("playButton").addEventListener("click", function() {
+document.getElementById("playButton").addEventListener("click", function () {
     let nbCardInput = document.getElementById("nbCardInput");
     initGame(nbCardInput.value);
 });
@@ -47,8 +49,9 @@ function clickOnCardEvent(card) {
                 allCards.forEach((card) => {
                     if (card.classList.contains("hidden")) {
                         //carte cachée
-                    } else {
+                    } else if (!card.classList.contains("finded")) {
                         card.classList.add("finded");
+                        cptCartesTrouvees++;
                     }
                 });
             }
@@ -56,6 +59,10 @@ function clickOnCardEvent(card) {
             cptClickCurrent = 0;
             //On enlève les cartes sauvegardées
             cardClickedId = "";
+            
+            if (cptCartesTrouvees == nbPairesOnGame * 2) {
+                alert("Bravo! Tu as gagné");
+            }
         }
     }
 }
@@ -63,6 +70,8 @@ function clickOnCardEvent(card) {
 /* Initialise le tableau */
 function initGame(nbPaires) {
     gameBoard.innerHTML = "";
+    nbPairesOnGame = nbPaires;
+    cptCartesTrouvees = 0;
     let gameCard = [];
     for (let i = 0; i < nbPaires; i++) {
         gameCard.push([cards[i], false]);
