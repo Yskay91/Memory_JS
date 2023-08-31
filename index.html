@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="gameBoard">
+    <div>
+      <label>Avec combien de paires de cartes voulez-vous jouer ?</label>
+      <input id="nbCardInput" type="number" min="2" max="6" value="2" />
+      <button id="playButton">Jouer</button>
     </div>
+    <div id="gameBoard"></div>
 
     <script src="script.js"></script>
   </body>

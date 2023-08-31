@@ -1,9 +1,14 @@
 let tableauJeu;
 let cptClickCurrent = 0;
 let cardClickedId;
-const cards = ["Evoli", "Sablaireau", "Salameche", "Pokeball"];
+const cards = ["Evoli", "Pikachu", "Psykokwak", "Sablaireau", "Salameche", "Pokeball"];
 const gameBoard = document.getElementById("gameBoard");
 
+
+document.getElementById("playButton").addEventListener("click", function() {
+    let nbCardInput = document.getElementById("nbCardInput");
+    initGame(nbCardInput.value);
+});
 /* Cette fonction gère ce qui se passe 
 quand on clique sur une carte 
 */
