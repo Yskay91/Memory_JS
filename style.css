@@ -1,24 +1,36 @@
-#gameBoard{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr)
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 800px;
+  margin: auto;
 }
 
-.card{
-    margin: 10px;
+.card {
+  margin: 15px;
+  transition: 0.4s;
 }
 
-.card:hover{
-    cursor: pointer;
+.card:hover {
+  cursor: pointer;
 }
 
-.card.hidden p{
-    visibility: hidden;
+.card img{
+    margin: 0;
 }
 
-.card.hidden{
-    background-color: #7c73e6;
+.card.hidden img{
+  visibility: hidden;
 }
 
-.card.finded{
-    color: green;
+.card.hidden {
+  background-image: url("img/card.jpg");
+  transform: rotateY(180deg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.card.finded {
+  border: solid 3px green;
+  opacity: 0.5;
 }
