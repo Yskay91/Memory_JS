@@ -8,11 +8,30 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <label>Avec combien de paires de cartes voulez-vous jouer ?</label>
-      <input id="nbCardInput" type="number" min="2" max="6" value="2" />
-      <button id="playButton">Jouer</button>
+    <div id="allconfettis"></div>
+
+    <div class="text-bienvenue">
+        <h1>Memory Game</h1>
+        <p>Combien de paires de cartes veux-tu pour commencer ?</p>
+        <div class="enteteJeu">
+            <div>
+                <div class="game-config">
+                    <input id="nbCardInput" type="number" max="6" min="2" value="2"/>
+                    <div class="moinsPlusCardsButton">
+                        <button id="ajoutCards">+</button>
+                        <button id="enleverCards">-</button>
+                    </div>
+                </div>
+                <button id="playButton">Go</button>
+            </div>
+            <div>
+                <div>
+                    Score actuel : <span id="NbCoupsCurrent"></span>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div id="gameBoard"></div>
 
     <script src="script.js"></script>

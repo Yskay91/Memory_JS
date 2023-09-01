@@ -1,6 +1,6 @@
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   max-width: 800px;
   margin: auto;
 }
@@ -8,17 +8,20 @@
 .card {
   margin: 15px;
   transition: 0.4s;
+  z-index: 1;
 }
 
 .card:hover {
   cursor: pointer;
 }
 
-.card img{
-    margin: auto;
+.card img {
+  margin: auto;
+  width: 100%;
+  height: 100%;
 }
 
-.card.hidden img{
+.card.hidden img {
   visibility: hidden;
 }
 
@@ -33,4 +36,101 @@
 .card.finded {
   border: solid 3px green;
   opacity: 0.5;
+}
+
+.confetti {
+  width: 15px;
+  height: 15px;
+  border-radius: 40%;
+  background-color: red;
+  animation: falling 5s infinite;
+  position: absolute;
+  top: -20px;
+  z-index: 2;
+}
+
+@keyframes falling {
+  0% {
+    top: -10px;
+    transform: rotate(180deg);
+  }
+  20% {
+    transform: translateX(90px) rotate(360deg);
+  }
+  40% {
+    transform: translateX(50px) rotate(180deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(30px) rotate(360deg);
+  }
+  70% {
+    opacity: 0.2;
+    transform: translateX(20px) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    top: 100%;
+    transform: translateX(30px) rotate(360deg);
+  }
+}
+
+.text-bienvenue {
+  text-align: center;
+}
+
+#nbCardInput {
+  height: 130px;
+  width: 90px;
+  text-align: center;
+  font-family: "Frazzle", sans-serif;
+  font-size: 30px;
+  border-radius: 5px;
+  background-image: url("img/card.jpg");
+  background-size: cover;
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+button {
+  margin: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  background-size: cover;
+  color: black;
+  border: none;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+  transition: 0.3s;
+  font-weight: bolder;
+}
+
+button:hover {
+  box-shadow: 2px 2px 2px rgb(191, 173, 173);
+}
+
+.game-config {
+  display: flex;
+  justify-content: center;
+}
+
+.moinsPlusCardsButton {
+  display: flex;
+  flex-direction: column;
+}
+
+.enteteJeu {
+  display: flex;
+  justify-content: space-evenly;
 }
