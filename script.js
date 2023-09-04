@@ -2,7 +2,7 @@
 let tableauJeu;
 let cptClickCurrent = 0;
 let cardClickedId;
-const cards = ["Evoli", "Pikachu", "Psykokwak", "Sablaireau", "Salameche", "Pokeball"];
+const cards = ["Evoli", "kraknoix", "Tenebre", "Eau", "Psy", "Poison", "Electrique", "sol", "Pikachu", "Psykokwak", "Sablaireau", "Salameche", "Pokeball"];
 const gameBoard = document.getElementById("gameBoard");
 let nbPairesOnGame;
 let cptCartesTrouvees = 0;
@@ -18,7 +18,7 @@ document.getElementById("playButton").addEventListener("click", function () {
 // Gestionnaire d'événement pour le bouton "Ajouter des cartes"
 document.getElementById("ajoutCards").addEventListener("click", function () {
     let nbCardInput = document.getElementById("nbCardInput");
-    if (nbCardInput.value < 6) {
+    if (nbCardInput.value < 10) {
         nbCardInput.value++;
     }
 });
@@ -41,7 +41,6 @@ function clickOnCardEvent(card) {
         return;
     }
     cptClickCurrent++;
-
     if (cptClickCurrent == 1) {
         // Premier clic, on cache les images déjà trouvées
         allCards.forEach((card) => {
@@ -118,7 +117,6 @@ function initGame(nbPaires) {
             }
         }
     }
-
     /* Ajoute l'événement de clic aux cartes */
     let allCards = document.querySelectorAll(".card");
     allCards.forEach((card) => {
